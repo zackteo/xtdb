@@ -1,11 +1,13 @@
-(defproject com.xtdb/xtdb-http-server "<inherited>"
+(defproject com.github.zackteo/xtdb-http-server "1.21.1-dev-SNAPSHOT-3"
   :description "XTDB HTTP Server"
 
   :plugins [[lein-parent "0.3.8"]
             [yogthos/lein-sass "0.1.10"]]
 
   :parent-project {:path "../../project.clj"
-                   :inherit [:version :repositories :deploy-repositories
+                   :inherit [ ;; :version
+                             :repositories
+                             ;; :deploy-repositories
                              :managed-dependencies
                              :pedantic? :global-vars
                              :license :url :pom-addition]}
@@ -14,7 +16,7 @@
 
   :dependencies [[org.clojure/clojure "1.10.3"]
                  [org.clojure/data.csv "1.0.0"]
-                 [com.xtdb/xtdb-core]
+                 [com.xtdb/xtdb-core "1.21.0"]
                  [com.cognitect/transit-clj "1.0.324"]
 
                  [com.nimbusds/nimbus-jose-jwt "9.7"]
@@ -22,6 +24,9 @@
                  [pro.juxt.clojars-mirrors.hiccup/hiccup "2.0.0-alpha2"]
                  [pro.juxt.clojars-mirrors.xtdb/xtdb-http-server-deps "0.0.2"]
                  [pro.juxt.clojars-mirrors.camel-snake-kebab/camel-snake-kebab "0.4.2"]]
+
+  :deploy-repositories [["releases" :clojars]
+                        ["snapshots" :clojars]]
 
   :clean-targets ^{:protect false} ["target"]
   :profiles {:dev
@@ -49,7 +54,7 @@
                              [expound "0.8.7"]]}
 
              :test {:dependencies [[pro.juxt.clojars-mirrors.clj-http/clj-http "3.12.2"]
-                                   [com.xtdb/xtdb-test]]}}
+                                   [com.xtdb/xtdb-test "1.21.0"]]}}
 
   :aliases {"fig" ["trampoline" "run" "-m" "figwheel.main"]
             "build:cljs" ["do"
